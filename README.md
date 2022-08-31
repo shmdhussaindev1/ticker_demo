@@ -4,6 +4,7 @@ This is the demo project created for showing how can we use the ticker react com
 
 This is NextJS Project, to run the project do
 
+    + clone the repo
     + `npm i`
     + then do either 'npm run dev` or
     + `npm run build` followed by ` npm run start`
@@ -14,7 +15,7 @@ This ticker component can be used as below, in this example it is used in `pages
     `<Ticker refreshTimeInSec={30} tickerData={dummyData}></Ticker>`
 
 Here
-    refreshTimeInSec ==> after this much second , ticker's Data is refreshed through the function `dataRefresh` in <Ticker> component, \
+    refreshTimeInSec ==> after this much second , ticker's Data is refreshed through the function `dataRefresh` in `<Ticker>` component, \
     In that Function call the api and store the data in the variable `newTickerData` for example `let newTickerData = await fetchTickerData();`
 
     tickerData[Array of data items]==> initial ticker data, either you can pass or call the dataRefresh  in useEffect() for first time, better to pass the data when you are initializing the component
@@ -46,7 +47,7 @@ Place the elements to move in ticker in the file Ticker/index.js files, look for
 
 and **/*END: this is the place u need to put ur ticker item*/** and place between the comment block.
 
-In the example I placed the elements to move in the ticker (I used <Link> i.e <a> to move in the ticker)
+In the example I placed the elements to move in the ticker (I used `<Link>` i.e `<a>` to move in the ticker)
 
 ```jsx
 
@@ -66,13 +67,15 @@ In the example I placed the elements to move in the ticker (I used <Link> i.e <a
 
 ## Files to include
 
-<Scroller> and <Ticker> components folders inclusing the scss/css files
+`<Scroller>` and `<Ticker>` components folders inclusing the scss/css files
 
 I Used the play and Pause icon as svg that is the reason I used the "@svgr/webpack" pkg
 
-I Used Scss for compilation so i used sass pkg
+I Used SCSS for compilation so i used sass pkg
 
 Here instead of API call , I used dummyData/tickerData.json file
+
+Other files are for demo purpose only, not required for projects
 
 ## Note:
 

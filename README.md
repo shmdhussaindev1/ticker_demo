@@ -1,27 +1,65 @@
-# Hello World example
+# Ticker Demo
 
-This example shows the most basic idea behind Next. We have 2 pages: `pages/index.tsx` and `pages/about.tsx`. The former responds to `/` requests and the latter to `/about`. Using `next/link` you can add hyperlinks between them with universal routing capabilities. The `day` directory shows that you can have subdirectories.
+This is the demo project created for showing how can we use the ticker react component to move the items as in snabusiness.com latest news ticker.
 
-## Deploy your own
+This is NextJS Project, to run the project do
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/hello-world)
+    + `npm i`
+    + then do either 'npm run dev` or
+    + `npm run build` followed by ` npm run start`
+    + then open the url `http://localhost:3000` in the browser
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/hello-world&project-name=hello-world&repository-name=hello-world)
+This ticker component can be used as below, in this example it is used in `pages/index.js`
 
-## How to use
+    `<Ticker refreshTimeInSec={30} tickerData={dummyData}></Ticker>`
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+Here
+    refreshTimeInSec ==> after this much second , ticker's Data is refreshed through the function `dataRefresh` in <Ticker> component, \
+    In that Function call the api and store the data in the variable `newTickerData` for example `let newTickerData = await fetchTickerData();`
 
-```bash
-npx create-next-app --example hello-world hello-world-app
+    tickerData[Array of data items]==> initial ticker data, either you can pass or call the dataRefresh  in useEffect() for first time, better to pass the data when you are initializing the component
+
+Prerequisties
+
+    + make sure page is having `direction:rtl` set for `html` and `body` elements
+
+```css
+
+    html,body {
+        direction: rtl;
+    }
+
+```
+    + all the elements have `box-sizing:border-box`
+
+```css
+
+    * {
+        box-sizing: border-box;
+    }
+
 ```
 
-```bash
-yarn create next-app --example hello-world hello-world-app
-```
+## Where to place your elements which are moving?
 
-```bash
-pnpm create next-app --example hello-world hello-world-app
-```
+Place the elements to move in ticker in the file Ticker/index.js files, look for the comment block **/*START: this is the place u need to put ur ticker item*/**
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+and **/*END: this is the place u need to put ur ticker item*/** and place between the comment block.
+
+In the example I placed the elements to move in the ticker (I used <Link> i.e <a> to move in the ticker)
+
+```jsx
+
+{tickerDataForScroller.contentItems.map((item) => {
+    return (
+        /*START: this is the place u need to put ur ticker item*/
+        <Link key={item.id} href={item.url}>
+            <a className={`${styles.item}`}>
+                <span className={`${styles.text}`}>{item.headline}</span>
+            </a>
+        </Link>
+        /*END: this is the place u need to put ur ticker item*/
+    );
+})}
+
+```

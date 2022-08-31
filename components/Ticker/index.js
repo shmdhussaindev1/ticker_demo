@@ -42,7 +42,6 @@ export default function Ticker({ tickerData, refreshTimeInSec = 5 }) {
 		let timerId;
 		let dataRefresh = async () => {
 			/*START: fetch data from API , here  used dummy data from file system*/
-
 			//here you can use api to fetch the data for the ticker
 			// let newTickerData = await fetchTickerData();
 			let newTickerData = dummyData;

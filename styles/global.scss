@@ -1,0 +1,14 @@
+* {
+	box-sizing: border-box;
+}
+html,
+body {
+	//the below one is required for rtl ticker
+	direction: rtl;
+
+	//below ones are for demo purpose
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}

@@ -63,3 +63,11 @@ In the example I placed the elements to move in the ticker (I used <Link> i.e <a
 })}
 
 ```
+
+## Files to include
+
+<Scroller> and <Ticker> components folders inclusing the scss/css files
+
+## Note:
+
+comments are provided in the css and component js files

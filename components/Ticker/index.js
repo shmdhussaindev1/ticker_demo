@@ -1,17 +1,22 @@
-import styles from "./Ticker.module.scss";
 import { useState, useCallback, useEffect } from "react";
-import PauseIcon from "/public/assets/svg/icons/pause.svg";
-import PlayIcon from "/public/assets/svg/icons/play.svg";
+
+//component for moving items
 import Scroller from "/components/Scroller";
+
+//for style
+import styles from "./Ticker.module.scss";
+
+//ticker item element item is link so used Link El
 import Link from "next/link";
 import PropTypes from "prop-types";
-import dummyData from "../../dummyData/tickerData.json";
-/*START: these modules are for demo*/
 
-// import * as fsPromises from "node:fs/promises";
-// import path from "path";
-/*END: these modules are for demo*/
-/* eslint-disable @next/next/no-img-element */
+//play and pause icon, have it any path and include
+import PauseIcon from "/public/assets/svg/icons/pause.svg";
+import PlayIcon from "/public/assets/svg/icons/play.svg";
+
+//for dummy data
+import dummyData from "../../dummyData/tickerData.json";
+
 export default function Ticker({ tickerData, refreshTimeInSec = 5 }) {
 	const [tickerDataForScroller, setTickerDataForScroller] =
 		useState(tickerData);
@@ -36,14 +41,10 @@ export default function Ticker({ tickerData, refreshTimeInSec = 5 }) {
 	useEffect(() => {
 		let timerId;
 		let dataRefresh = async () => {
-			// let newTickerData = await fetchTickerData();
-
 			/*START: fetch data from API , here  used dummy data from file system*/
-			// const tickerDataPath = path.join(
-			// 	process.cwd(),
-			// 	`dummyData/tickerData.json`
-			// );
-			// let newTickerData = await fsPromises.readFile(tickerDataPath, "utf8");
+
+			//here you can use api to fetch the data for the ticker
+			// let newTickerData = await fetchTickerData();
 			let newTickerData = dummyData;
 
 			/*END: fetch data from API , here  used dummy data from file system*/
@@ -52,9 +53,14 @@ export default function Ticker({ tickerData, refreshTimeInSec = 5 }) {
 			if (!newTickerData) {
 				return;
 			}
-			//if the data is new then update the ticker
+
+			/*START: if the data is new then update the ticker*/
 
 			let sameDataAsPrevIteration;
+
+			/*START: this logic is for sky news , modify the isSameData function for ur needs,
+			here i am checking only the headlien from prev and new data is same*/
+
 			let isSameData = function (arr1, arr2) {
 				// Check if the arrays are the same length
 				if (arr1.length !== arr2.length) return false;
@@ -77,6 +83,8 @@ export default function Ticker({ tickerData, refreshTimeInSec = 5 }) {
 				newDataContentHeadlineArray,
 				oldDataContentHeadlineArray
 			);
+			/*END: this logic is for sky news , modify the isSameData function for ur needs,
+			here i am checking only the headlien from prev and new data is same*/
 
 			if (!sameDataAsPrevIteration) {
 				setTickerDataForScroller(newTickerData);
@@ -84,12 +92,12 @@ export default function Ticker({ tickerData, refreshTimeInSec = 5 }) {
 					return prevNoOfDataRefresh + 1;
 				});
 			}
+			/*END: if the data is new then update the ticker */
 		};
-		dataRefresh();
+
 		timerId = setTimeout(dataRefresh, refreshTimeInSec * 1000);
 
 		return () => {
-			// console.log(`going to removed, the ticker elem`)
 			window.clearTimeout(timerId);
 		};
 	}, [refreshTimeInSec, tickerDataForScroller]);
@@ -161,11 +169,13 @@ export default function Ticker({ tickerData, refreshTimeInSec = 5 }) {
 						>
 							{tickerDataForScroller.contentItems.map((item) => {
 								return (
+									/*START: this is the place u need to put ur ticker item*/
 									<Link key={item.id} href={item.url}>
 										<a className={`${styles.item}`}>
 											<span className={`${styles.text}`}>{item.headline}</span>
 										</a>
 									</Link>
+									/*END: this is the place u need to put ur ticker item*/
 								);
 							})}
 						</Scroller>

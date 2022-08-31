@@ -71,7 +71,7 @@ In the example I placed the elements to move in the ticker (I used `<Link>` i.e 
 
 ## Files to include
 
-`<Scroller>` and `<Ticker>` components folders inclusing the scss/css files
+`<Scroller>` and `<Ticker>` components folders including the scss/css files
 
 I Used the play and Pause icon as svg that is the reason I used the "@svgr/webpack" pkg
 

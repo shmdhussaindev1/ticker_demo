@@ -1,5 +1,9 @@
 # Ticker Demo
 
+
+**DEMO URL:** https://ticker-demo.vercel.app/
+
+
 This is the demo project created for showing how can we use the ticker react component to move the items as in snabusiness.com latest news ticker.
 
 This is NextJS Project, to run the project do
@@ -20,7 +24,7 @@ Here
 
     tickerData[Array of data items]==> initial ticker data, either you can pass or call the dataRefresh  in useEffect() for first time, better to pass the data when you are initializing the component
 
-Prerequisties
+## Prerequisties
 
     + make sure page is having `direction:rtl` set for `html` and `body` elements
 

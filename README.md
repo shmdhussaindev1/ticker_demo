@@ -68,6 +68,12 @@ In the example I placed the elements to move in the ticker (I used <Link> i.e <a
 
 <Scroller> and <Ticker> components folders inclusing the scss/css files
 
+I Used the play and Pause icon as svg that is the reason I used the "@svgr/webpack" pkg
+
+I Used Scss for compilation so i used sass pkg
+
+Here instead of API call , I used dummyData/tickerData.json file
+
 ## Note:
 
 comments are provided in the css and component js files
